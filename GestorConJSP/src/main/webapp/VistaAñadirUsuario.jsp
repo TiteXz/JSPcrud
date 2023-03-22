@@ -29,7 +29,6 @@ a{
 <nav>
 	<a href="AñadirUsuario">AñadirUsuario &nbsp;&nbsp;&nbsp;</a>
 	<a href="VerUsuarios">VerUsuarios &nbsp;&nbsp;&nbsp;</a>
-	<a href="VerUsuario">VerUsuario</a>
 </nav>
 
 <br><br><br>

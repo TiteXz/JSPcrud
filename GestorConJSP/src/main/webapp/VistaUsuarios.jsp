@@ -43,7 +43,6 @@ ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("Usuario
 <nav>
 	<a href="AñadirUsuario">AñadirUsuario &nbsp;&nbsp;&nbsp;</a>
 	<a href="VerUsuarios">VerUsuarios &nbsp;&nbsp;&nbsp;</a>
-	<a href="VerUsuario">VerUsuario</a>
 </nav>
 
 <br><br><br>
@@ -65,6 +64,7 @@ ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("Usuario
       <td><%out.println(usuario.getNombre()); %></td>
       <td><a class= "eliminar" href="EliminarUsuario?id=<%= usuario.getId() %>">eliminar </a> </td>
       <td><a class= "modificar" href="FormModificarUsuario?id=<%= usuario.getId()%>">Modificar </a> </td>
+      <td><a class= "Ver" href="VerUsuario?id=<%= usuario.getId()%>">VerUsuario </a> </td>
     </tr>
   </tbody>
   <%}%>
