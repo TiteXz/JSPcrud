@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Modelo.Conexion;
 import Modelo.ModeloUsuario;
 import Modelo.Usuario;
 
@@ -31,22 +32,16 @@ public class ModificarUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		request.getRequestDispatcher("VistaModificarUsuario.jsp").forward(request, response);
-		ModeloUsuario mU = new ModeloUsuario();
-		String nombre = request.getParameter("nombre");
+		//datuak jaso
 		int id = Integer.parseInt(request.getParameter("id"));
-		
-		
-		mU.modificarUsuario(nombre,id);
-		
-		
-		ArrayList<Usuario> usuarios = mU.getUsuarios();
-		
-		request.setAttribute("Usuario", usuarios);
-		request.getRequestDispatcher("VistaUsuario.jsp").forward(request, response);
-		
+		String nombre = request.getParameter("nombre");
+		ModeloUsuario mU = new ModeloUsuario();
+		//update
+	
+		mU.Conectar();
+		mU.modificarUsuario(nombre, id);
+		mU.cerrar();
+		request.getRequestDispatcher("VerUsuarios").forward(request, response);
 	}
 
 	/**

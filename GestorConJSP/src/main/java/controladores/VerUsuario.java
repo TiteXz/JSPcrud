@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -13,16 +14,16 @@ import Modelo.ModeloUsuario;
 import Modelo.Usuario;
 
 /**
- * Servlet implementation class AbrirJSP
+ * Servlet implementation class VerUsuario
  */
-@WebServlet("/VerUsuarios")
-public class VerUsuarios extends HttpServlet {
+@WebServlet("/VerUsuario")
+public class VerUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VerUsuarios() {
+    public VerUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +33,23 @@ public class VerUsuarios extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		ModeloUsuario moUsu = new ModeloUsuario();
+		int id = Integer.parseInt(request.getParameter("id"));
+		String nombre = request.getParameter("nombre");
+		
 		
 		moUsu.Conectar();
-		ArrayList<Usuario> usuarios = moUsu.getUsuarios();
+			try {
+				Usuario usuarios = moUsu.getUsuario(id);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		moUsu.cerrar();
 		
-		request.setAttribute("Usuario", usuarios);
-		request.getRequestDispatcher("VistaUsuarios.jsp").forward(request, response);
-	
+		
+		request.getRequestDispatcher("VistaVerUsuario.jsp").forward(request, response);
+		
 	}
 
 	/**

@@ -1,3 +1,4 @@
+<%@ page import="Modelo.Usuario" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -24,25 +25,28 @@ a{
 }
 </style>
 
-<nav>
-	<a href="AñadirUsuario">AñadirUsuario &nbsp;&nbsp;&nbsp;</a>
-	<a href="VerUsuarios">VerUsuarios &nbsp;&nbsp;&nbsp;</a>
-	<a href="ModificarUsuario">ModificarUsuario</a>
-</nav>
-
-<br><br><br>
-
-<form method="GET" action="ModificarUsuario">
-<label>Nombre: <input type="text" id="" name="nombre" /></label>
-<br>
-<br>
-<label>Id: <input type="text" id="" name="id" /></label>
-<br>
-<br>
-<input type="submit" value="GUARDAR" />
-</form>
 
 <body>
+	<%
+Usuario usuario = (Usuario)request.getAttribute("usuario");
+%>
+	<nav>
+		<a href="AñadirUsuario">AñadirUsuario &nbsp;&nbsp;&nbsp;</a>
+		<a href="VerUsuarios">VerUsuarios &nbsp;&nbsp;&nbsp;</a>
+		<a href="VerUsuario">VerUsuario</a>
+	</nav>
+	
+	<br><br><br>
+	
+	<form method="GET" action="ModificarUsuario">
+		<label>Nombre: <input type="text" id="" name="nombre" value="<%out.print(usuario.getNombre()); %>"/></label>
+		<br>
+		<br>
+		<label>Id: <input type="text" id="" name="id" value="<%out.print(usuario.getId()); %>"/></label>
+		<br>
+		<br>
+		<input type="submit" value="GUARDAR" />
+	</form>
 
 </body>
 </html>

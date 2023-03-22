@@ -32,19 +32,16 @@ public class EliminarUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		
-		
 		ModeloUsuario moUsu = new ModeloUsuario();
-		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
+		moUsu.Conectar();
 		moUsu.eliminarUsuarios(id);
-		
 		ArrayList<Usuario> usuarios = moUsu.getUsuarios();
 		
 		request.setAttribute("Usuario", usuarios);
 		request.getRequestDispatcher("VistaUsuarios.jsp").forward(request, response);
+		moUsu.cerrar();
 	}
 
 	/**

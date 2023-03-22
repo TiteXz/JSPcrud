@@ -1,5 +1,4 @@
 <%@ page import= "Modelo.Usuario" %>
-<%@ page import= "java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,7 +6,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 <style>
@@ -34,12 +32,10 @@ color:mediumpurple;
 }
 
 </style>
-
 <body>
 
-<%
-ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("Usuario");
-%>
+
+
 <nav>
 	<a href="AñadirUsuario">AñadirUsuario &nbsp;&nbsp;&nbsp;</a>
 	<a href="VerUsuarios">VerUsuarios &nbsp;&nbsp;&nbsp;</a>
@@ -58,7 +54,8 @@ ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("Usuario
     </tr>
   </thead>
   
-  <%for(Usuario usuario : usuarios){ %>
+ <% Usuario usuario = (Usuario) request.getAttribute("usuario");%>
+
   <tbody>
     <tr>
       <th scope="row"><%out.println(usuario.getId()); %></th>
@@ -67,12 +64,8 @@ ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("Usuario
       <td><a class= "modificar" href="FormModificarUsuario?id=<%= usuario.getId()%>">Modificar </a> </td>
     </tr>
   </tbody>
-  <%}%>
+
 </table>
-
-
-
-
 
 </body>
 </html>
