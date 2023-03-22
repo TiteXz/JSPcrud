@@ -35,11 +35,12 @@ public class ModificarUsuario extends HttpServlet {
 		//datuak jaso
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
+		String password = request.getParameter("password");
 		ModeloUsuario mU = new ModeloUsuario();
 		//update
 	
 		mU.Conectar();
-		mU.modificarUsuario(nombre, id);
+		mU.modificarUsuario(nombre,password, id);
 		mU.cerrar();
 		request.getRequestDispatcher("VerUsuarios").forward(request, response);
 	}

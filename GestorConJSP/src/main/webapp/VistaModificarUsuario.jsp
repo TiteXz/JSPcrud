@@ -41,6 +41,9 @@ Usuario usuario = (Usuario)request.getAttribute("usuario");
 		<label>Nombre: <input type="text" id="" name="nombre" value="<%out.print(usuario.getNombre()); %>"/></label>
 		<br>
 		<br>
+		<label>Password: <input type="text" id="" name="password" value="<%out.print(usuario.getPassword()); %>"/></label>
+		<br>
+		<br>
 		<label>Id: <input type="text" id="" name="id" value="<%out.print(usuario.getId()); %>"/></label>
 		<br>
 		<br>

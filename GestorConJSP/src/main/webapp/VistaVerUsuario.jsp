@@ -49,7 +49,7 @@ color:mediumpurple;
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Nombre</th>
-      <th scope="col"></th>
+      <th scope="col">Password</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -60,6 +60,7 @@ color:mediumpurple;
     <tr>
       <th scope="row"><%out.println(usuario.getId()); %></th>
       <td><%out.println(usuario.getNombre()); %></td>
+      <td><%out.println(usuario.getPassword()); %></td>
       <td><a class= "eliminar" href="EliminarUsuario?id=<%= usuario.getId() %>">eliminar </a> </td>
       <td><a class= "modificar" href="FormModificarUsuario?id=<%= usuario.getId()%>">Modificar </a> </td>
     </tr>

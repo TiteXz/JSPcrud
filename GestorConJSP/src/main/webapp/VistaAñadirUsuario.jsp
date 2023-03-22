@@ -35,6 +35,7 @@ a{
 
 <form method="GET" action="AñadirUsuario">
 <label>Nombre: <input type="text" id="nombre" name="nombre" /></label>
+<label>Password: <input type="text" id="password" name="password" /></label>
 <br>
 <br>
 <input type="submit" value="GUARDAR" />

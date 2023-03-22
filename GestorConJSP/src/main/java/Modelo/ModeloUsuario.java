@@ -20,6 +20,7 @@ public class ModeloUsuario extends Conexion {
 
 				usuario.setId(resultado.getInt("id"));
 				usuario.setNombre(resultado.getString("nombre"));
+				usuario.setPassword(resultado.getString("password"));
 
 				usuarios.add(usuario);
 			}
@@ -45,11 +46,12 @@ public class ModeloUsuario extends Conexion {
 
 	}
 
-	public void ainadirUsuario(String nombre) {
+	public void ainadirUsuario(String nombre, String password) {
 		try {
 
-			PreparedStatement pst = conexion.prepareStatement("INSERT INTO usuarios (nombre) VALUES(?)");
+			PreparedStatement pst = conexion.prepareStatement("INSERT INTO usuarios (nombre, password) VALUES(?,?)");
 			pst.setString(1, nombre);
+			pst.setString(2, password);
 
 			pst.execute();
 
@@ -58,12 +60,13 @@ public class ModeloUsuario extends Conexion {
 		}
 	}
 
-	public void modificarUsuario(String nombre, int id) {
+	public void modificarUsuario(String nombre, String password, int id) {
 		try {
 
-			PreparedStatement pst = conexion.prepareStatement("UPDATE usuarios SET nombre=? WHERE id=?");
+			PreparedStatement pst = conexion.prepareStatement("UPDATE usuarios SET nombre=?, password=? WHERE id=?");
 			pst.setString(1, nombre);
-			pst.setInt(2, id);
+			pst.setString(2, password);
+			pst.setInt(3, id);
 
 			pst.executeUpdate();
 
@@ -83,6 +86,7 @@ public class ModeloUsuario extends Conexion {
 		resultado.next();
 		usuario.setId(resultado.getInt("id"));
 		usuario.setNombre(resultado.getString("nombre"));
+		usuario.setPassword(resultado.getString("password"));
 
 		return usuario;
 	}
