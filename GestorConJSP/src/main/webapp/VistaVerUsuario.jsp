@@ -32,6 +32,18 @@ color:cyan;
 color:mediumpurple;
 }
 
+.eliminar:hover{
+color:red;
+}
+
+.modificar:hover{
+color:red;
+}
+
+a:hover{
+color:red;
+}
+
 </style>
 <body>
 

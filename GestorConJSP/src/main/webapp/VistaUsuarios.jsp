@@ -26,12 +26,38 @@ a{
 }
 
 .eliminar{
-color:cyan;
+color:white;
 }
 
 .modificar{
+color:white;
+}
+.Ver{
+color:white;
+}
+
+.eliminar:hover{
+color:red;
+}
+
+.modificar:hover{
 color:mediumpurple;
 }
+
+.Ver:hover{
+color: #DAF7A6 ;
+}
+
+#menu a{
+color:white;
+border-radius:15px;
+}
+
+#menu a:hover{
+color:cyan;
+border-radius:15px;
+}
+
 
 </style>
 
@@ -40,8 +66,8 @@ color:mediumpurple;
 <%
 ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("Usuario");
 %>
-<nav>
-	<a href="AñadirUsuario">AñadirUsuario &nbsp;&nbsp;&nbsp;</a>
+<nav id="menu">
+	<a href="AñadirUsuario">AñadirUsuario &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 	<a href="VerUsuarios">VerUsuarios &nbsp;&nbsp;&nbsp;</a>
 </nav>
 
