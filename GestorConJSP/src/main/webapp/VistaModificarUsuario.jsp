@@ -37,11 +37,14 @@ Usuario usuario = (Usuario)request.getAttribute("usuario");
 	
 	<br><br><br>
 	
-	<form method="GET" action="ModificarUsuario">
+	<form  action="ModificarUsuario">
 		<label>Nombre: <input type="text" id="" name="nombre" value="<%out.print(usuario.getNombre()); %>"/></label>
 		<br>
 		<br>
 		<label>Password: <input type="text" id="" name="password" value="<%out.print(usuario.getPassword()); %>"/></label>
+		<br>
+		<br>
+		<label>Fecha_login: <input type="date" id="" name="fecha_login" value="<%out.print(usuario.getFecha_login()); %>"/></label>
 		<br>
 		<br>
 		<label>Id: <input type="text" id="" name="id" value="<%out.print(usuario.getId()); %>"/></label>

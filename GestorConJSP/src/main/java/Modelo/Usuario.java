@@ -1,12 +1,14 @@
 package Modelo;
 
+import java.util.Date;
+
 public class Usuario {
 
 	
 	private int id;
 	private String nombre;
 	private String password;
-	
+	private Date fecha_login;
 	
 	public Usuario() {}
 	
@@ -44,9 +46,17 @@ public class Usuario {
 	}
 	
 	
+	public Date getFecha_login() {
+		return fecha_login;
+	}
+
+	public void setFecha_login(Date fecha_login) {
+		this.fecha_login = fecha_login;
+	}
+
 	@Override
 	public String toString() {
-		return "Usuario: id=" + id + ", nombre=" + nombre + " ,password=" + password;
+		return "Usuario: id=" + id + ", nombre=" + nombre + " ,password=" + password + ", fecha_login" + fecha_login;
 	}
 
 	

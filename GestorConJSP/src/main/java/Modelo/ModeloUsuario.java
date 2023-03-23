@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,6 +22,7 @@ public class ModeloUsuario extends Conexion {
 				usuario.setId(resultado.getInt("id"));
 				usuario.setNombre(resultado.getString("nombre"));
 				usuario.setPassword(resultado.getString("password"));
+				usuario.setFecha_login(resultado.getDate("fecha_login"));
 
 				usuarios.add(usuario);
 			}
@@ -46,12 +48,14 @@ public class ModeloUsuario extends Conexion {
 
 	}
 
-	public void ainadirUsuario(String nombre, String password) {
+	public void ainadirUsuario(Usuario usuario) {
 		try {
 
-			PreparedStatement pst = conexion.prepareStatement("INSERT INTO usuarios (nombre, password) VALUES(?,?)");
-			pst.setString(1, nombre);
-			pst.setString(2, password);
+			
+			PreparedStatement pst = conexion.prepareStatement("INSERT INTO usuarios (nombre, password, fecha_login) VALUES(?,?,?)");
+			pst.setString(1, usuario.getNombre());
+			pst.setString(2, usuario.getPassword());
+			pst.setDate(3, new Date(usuario.getFecha_login().getTime()));
 
 			pst.execute();
 
@@ -60,13 +64,14 @@ public class ModeloUsuario extends Conexion {
 		}
 	}
 
-	public void modificarUsuario(String nombre, String password, int id) {
+	public void modificarUsuario(Usuario usuario) {
 		try {
 
-			PreparedStatement pst = conexion.prepareStatement("UPDATE usuarios SET nombre=?, password=? WHERE id=?");
-			pst.setString(1, nombre);
-			pst.setString(2, password);
-			pst.setInt(3, id);
+			PreparedStatement pst = conexion.prepareStatement("UPDATE usuarios SET nombre=?, password=?, fecha_login=? WHERE id=?");
+			pst.setString(1, usuario.getNombre());
+			pst.setString(2, usuario.getPassword());
+			pst.setDate(3, new Date(usuario.getFecha_login().getTime()));
+			pst.setInt(4, usuario.getId());
 
 			pst.executeUpdate();
 
@@ -87,6 +92,7 @@ public class ModeloUsuario extends Conexion {
 		usuario.setId(resultado.getInt("id"));
 		usuario.setNombre(resultado.getString("nombre"));
 		usuario.setPassword(resultado.getString("password"));
+		usuario.setFecha_login(resultado.getDate("fecha_login"));
 
 		return usuario;
 	}

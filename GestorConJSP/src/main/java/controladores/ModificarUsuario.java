@@ -1,6 +1,9 @@
 package controladores;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -33,14 +36,28 @@ public class ModificarUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//datuak jaso
+	   
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String password = request.getParameter("password");
+		SimpleDateFormat fecha_login = new SimpleDateFormat("yyyy-MM-dd");
+		
 		ModeloUsuario mU = new ModeloUsuario();
+		
+		Usuario usu = new Usuario();
+		usu.setNombre(nombre);
+		usu.setPassword(password);
+		try {
+			usu.setFecha_login(fecha_login.parse(request.getParameter("fecha_login")));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		usu.setId(id);
+		
 		//update
-	
 		mU.Conectar();
-		mU.modificarUsuario(nombre,password, id);
+		mU.modificarUsuario(usu);
 		mU.cerrar();
 		request.getRequestDispatcher("VerUsuarios").forward(request, response);
 	}
