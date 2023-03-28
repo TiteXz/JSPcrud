@@ -56,7 +56,7 @@ public class ModificarUsuario extends HttpServlet {
 		usu.setId(id);
 		
 		//update
-		mU.Conectar();
+		mU.conectar();
 		mU.modificarUsuario(usu);
 		mU.cerrar();
 		request.getRequestDispatcher("VerUsuarios").forward(request, response);

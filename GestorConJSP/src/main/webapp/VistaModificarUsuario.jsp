@@ -1,6 +1,7 @@
 <%@ page import="Modelo.Usuario" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +28,7 @@ a{
 
 
 <body>
-	<%
-Usuario usuario = (Usuario)request.getAttribute("usuario");
-%>
+
 	<nav>
 		<a href="AñadirUsuario">AñadirUsuario &nbsp;&nbsp;&nbsp;</a>
 		<a href="VerUsuarios">VerUsuarios &nbsp;&nbsp;&nbsp;</a>
@@ -38,16 +37,16 @@ Usuario usuario = (Usuario)request.getAttribute("usuario");
 	<br><br><br>
 	
 	<form  action="ModificarUsuario">
-		<label>Nombre: <input type="text" id="" name="nombre" value="<%out.print(usuario.getNombre()); %>"/></label>
+		<label>Nombre: <input type="text" id="" name="nombre" value="${usuario.nombre}"/></label>
 		<br>
 		<br>
-		<label>Password: <input type="text" id="" name="password" value="<%out.print(usuario.getPassword()); %>"/></label>
+		<label>Password: <input type="text" id="" name="password" value="${usuario.password}"/></label>
 		<br>
 		<br>
-		<label>Fecha_login: <input type="date" id="" name="fecha_login" value="<%out.print(usuario.getFecha_login()); %>"/></label>
+		<label>Fecha_login: <input type="date" id="" name="fecha_login" value="${usuario.fecha_login}"/></label>
 		<br>
 		<br>
-		<label>Id: <input type="text" id="" name="id" value="<%out.print(usuario.getId()); %>"/></label>
+		<label>Id: <input type="text" id="" name="id" value="${usuario.id}"/></label>
 		<br>
 		<br>
 		<input type="submit" value="GUARDAR" />

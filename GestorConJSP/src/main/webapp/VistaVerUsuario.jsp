@@ -1,11 +1,12 @@
 <%@ page import= "Modelo.Usuario" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Ver Usuario</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
@@ -65,17 +66,15 @@ color:red;
       <th scope="col">Date</th>
     </tr>
   </thead>
-  
- <% Usuario usuario = (Usuario) request.getAttribute("usuario");%>
 
   <tbody>
     <tr>
-      <th scope="row"><%out.println(usuario.getId()); %></th>
-      <td><%out.println(usuario.getNombre()); %></td>
-      <td><%out.println(usuario.getPassword()); %></td>
-      <td><%out.println(usuario.getFecha_login()); %></td>
-      <td><a class= "eliminar" href="EliminarUsuario?id=<%= usuario.getId() %>">eliminar </a> </td>
-      <td><a class= "modificar" href="FormModificarUsuario?id=<%= usuario.getId()%>">Modificar </a> </td>
+      <th scope="row">${usuario.id}</th>
+      <td>${usuario.nombre}</td>
+      <td>${usuario.password}</td>
+      <td>${usuario.fecha_login}</td>
+      <td><a class= "eliminar" href="EliminarUsuario?id=${usuario.id}">eliminar </a> </td>
+      <td><a class= "modificar" href="FormModificarUsuario?id=${usuario.id}">Modificar </a> </td>
     </tr>
   </tbody>
 

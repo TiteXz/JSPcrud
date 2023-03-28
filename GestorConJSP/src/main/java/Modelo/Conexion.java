@@ -11,7 +11,7 @@ public class Conexion {
 
 	/**
 	 */
-	public void Conectar() {
+	public void conectar() {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				this.conexion = DriverManager.getConnection("jdbc:mysql://" + Config.HOST + "/" + Config.BBDD, Config.USERNAME, Config.PASSWORD);

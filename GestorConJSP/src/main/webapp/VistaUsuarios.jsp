@@ -2,11 +2,12 @@
 <%@ page import= "java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Ver Usuarios</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
@@ -63,9 +64,6 @@ border-radius:15px;
 
 <body>
 
-<%
-ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("Usuario");
-%>
 <nav id="menu">
 	<a href="AñadirUsuario">AñadirUsuario &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 	<a href="VerUsuarios">VerUsuarios &nbsp;&nbsp;&nbsp;</a>
@@ -82,20 +80,20 @@ ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("Usuario
       <th scope="col">Date</th>
     </tr>
   </thead>
-  
-  <%for(Usuario usuario : usuarios){ %>
   <tbody>
+  
+  <c:forEach items="${usuarios}" var="usuario">
     <tr>
-      <th scope="row"><%out.println(usuario.getId()); %></th>
-      <td><%out.println(usuario.getNombre()); %></td>
-      <td><%out.println(usuario.getPassword()); %></td>
-      <td><%= usuario.getFecha_login() %></td>
-      <td><a class= "eliminar" href="EliminarUsuario?id=<%= usuario.getId() %>">eliminar </a> </td>
-      <td><a class= "modificar" href="FormModificarUsuario?id=<%= usuario.getId()%>">Modificar </a> </td>
-      <td><a class= "Ver" href="VerUsuario?id=<%= usuario.getId()%>">VerUsuario </a> </td>
+      <th scope="row">${usuario.id}</th>
+      <td>${usuario.nombre}</td>
+      <td>${usuario.password}</td>
+      <td>${usuario.fecha_login}</td>
+      <td><a class= "eliminar" href="EliminarUsuario?id=${usuario.id}">eliminar </a> </td>
+      <td><a class= "modificar" href="FormModificarUsuario?id=${usuario.id}">Modificar </a> </td>
+      <td><a class= "Ver" href="VerUsuario?id=${usuario.id}">VerUsuario </a> </td>
     </tr>
+</c:forEach>
   </tbody>
-  <%}%>
 </table>
 
 

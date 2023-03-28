@@ -36,7 +36,7 @@ public class VerUsuario extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		ModeloUsuario moUsu = new ModeloUsuario();
 
-		moUsu.Conectar();
+		moUsu.conectar();
 		Usuario usuario=new Usuario();
 			try {
 				usuario = moUsu.getUsuario(id);

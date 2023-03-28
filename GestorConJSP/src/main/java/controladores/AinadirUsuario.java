@@ -1,7 +1,9 @@
 package controladores;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +15,16 @@ import Modelo.ModeloUsuario;
 import Modelo.Usuario;
 
 /**
- * Servlet implementation class AbrirJSP
+ * Servlet implementation class AñadirUsuario
  */
-@WebServlet("/VerUsuarios")
-public class VerUsuarios extends HttpServlet {
+@WebServlet("/AñadirUsuario")
+public class AinadirUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VerUsuarios() {
+    public AinadirUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +35,9 @@ public class VerUsuarios extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		ModeloUsuario moUsu = new ModeloUsuario();
-		
-		moUsu.conectar();
-		ArrayList<Usuario> usuarios = moUsu.getUsuarios();
-		moUsu.cerrar();
-		
-		request.setAttribute("usuarios", usuarios);
-		request.getRequestDispatcher("VistaUsuarios.jsp").forward(request, response);
 	
+		
+		request.getRequestDispatcher("VistaAñadirUsuario.jsp").forward(request, response);
 	}
 
 	/**
@@ -50,6 +46,28 @@ public class VerUsuarios extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		
+		String nombre = request.getParameter("nombre");
+		String password = request.getParameter("password");
+		SimpleDateFormat fecha_login = new SimpleDateFormat("yyyy-MM-dd");
+		
+		ModeloUsuario mU = new ModeloUsuario();
+		
+		Usuario usu = new Usuario();
+		usu.setNombre(nombre);
+		usu.setPassword(password);
+		try {
+			usu.setFecha_login(fecha_login.parse(request.getParameter("fecha_login")));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		mU.conectar();
+		mU.ainadirUsuario(usu);
+		mU.cerrar();
+		
 	}
 
 }

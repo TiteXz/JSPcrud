@@ -35,7 +35,7 @@ public class EliminarUsuario extends HttpServlet {
 		ModeloUsuario moUsu = new ModeloUsuario();
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		moUsu.Conectar();
+		moUsu.conectar();
 		moUsu.eliminarUsuarios(id);
 		ArrayList<Usuario> usuarios = moUsu.getUsuarios();
 		
