@@ -1,5 +1,4 @@
 <%@ page import= "Modelo.Usuario" %>
-<%@ page import= "java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -78,6 +77,7 @@ border-radius:15px;
       <th scope="col">Nombre</th>
       <th scope="col">Password</th>
       <th scope="col">Date</th>
+      <th scope="col">Empleo</th>
     </tr>
   </thead>
   <tbody>
@@ -88,6 +88,7 @@ border-radius:15px;
       <td>${usuario.nombre}</td>
       <td>${usuario.password}</td>
       <td>${usuario.fecha_login}</td>
+      <td>${usuario.id_rol}</td>
       <td><a class= "eliminar" href="EliminarUsuario?id=${usuario.id}">eliminar </a> </td>
       <td><a class= "modificar" href="FormModificarUsuario?id=${usuario.id}">Modificar </a> </td>
       <td><a class= "Ver" href="VerUsuario?id=${usuario.id}">VerUsuario </a> </td>

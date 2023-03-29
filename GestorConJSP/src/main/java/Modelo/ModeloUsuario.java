@@ -23,6 +23,7 @@ public class ModeloUsuario extends Conexion {
 				usuario.setNombre(resultado.getString("nombre"));
 				usuario.setPassword(resultado.getString("password"));
 				usuario.setFecha_login(resultado.getDate("fecha_login"));
+				usuario.setId_rol(resultado.getInt("id_rol"));
 
 				usuarios.add(usuario);
 			}
@@ -52,10 +53,11 @@ public class ModeloUsuario extends Conexion {
 		try {
 
 			
-			PreparedStatement pst = conexion.prepareStatement("INSERT INTO usuarios (nombre, password, fecha_login) VALUES(?,?,?)");
+			PreparedStatement pst = conexion.prepareStatement("INSERT INTO usuarios (nombre, password, fecha_login, id_rol) VALUES(?,?,?,?)");
 			pst.setString(1, usuario.getNombre());
 			pst.setString(2, usuario.getPassword());
 			pst.setDate(3, new Date(usuario.getFecha_login().getTime()));
+			pst.setInt(4, usuario.getId_rol());
 
 			pst.execute();
 
@@ -67,11 +69,12 @@ public class ModeloUsuario extends Conexion {
 	public void modificarUsuario(Usuario usuario) {
 		try {
 
-			PreparedStatement pst = conexion.prepareStatement("UPDATE usuarios SET nombre=?, password=?, fecha_login=? WHERE id=?");
+			PreparedStatement pst = conexion.prepareStatement("UPDATE usuarios SET nombre=?, password=?, fecha_login=?, id_rol=? WHERE id=?");
 			pst.setString(1, usuario.getNombre());
 			pst.setString(2, usuario.getPassword());
 			pst.setDate(3, new Date(usuario.getFecha_login().getTime()));
-			pst.setInt(4, usuario.getId());
+			pst.setInt(4, usuario.getId_rol());
+			pst.setInt(5, usuario.getId());
 
 			pst.executeUpdate();
 
@@ -93,6 +96,7 @@ public class ModeloUsuario extends Conexion {
 		usuario.setNombre(resultado.getString("nombre"));
 		usuario.setPassword(resultado.getString("password"));
 		usuario.setFecha_login(resultado.getDate("fecha_login"));
+		usuario.setId_rol(resultado.getInt("id_rol"));
 
 		return usuario;
 	}

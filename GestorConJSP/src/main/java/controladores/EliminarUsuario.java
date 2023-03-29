@@ -38,10 +38,11 @@ public class EliminarUsuario extends HttpServlet {
 		moUsu.conectar();
 		moUsu.eliminarUsuarios(id);
 		ArrayList<Usuario> usuarios = moUsu.getUsuarios();
-		
-		request.setAttribute("Usuario", usuarios);
-		request.getRequestDispatcher("VistaUsuarios.jsp").forward(request, response);
 		moUsu.cerrar();
+		
+		request.setAttribute("usuarios", usuarios);
+		request.getRequestDispatcher("VistaUsuarios.jsp").forward(request, response);
+		
 	}
 
 	/**

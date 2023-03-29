@@ -37,10 +37,12 @@ public class ModificarUsuario extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//datuak jaso
 	   
+		
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String password = request.getParameter("password");
 		SimpleDateFormat fecha_login = new SimpleDateFormat("yyyy-MM-dd");
+		int id_rol = Integer.parseInt(request.getParameter("id_rol"));
 		
 		ModeloUsuario mU = new ModeloUsuario();
 		
@@ -54,6 +56,7 @@ public class ModificarUsuario extends HttpServlet {
 			e.printStackTrace();
 		}
 		usu.setId(id);
+		usu.setId_rol(id_rol);
 		
 		//update
 		mU.conectar();

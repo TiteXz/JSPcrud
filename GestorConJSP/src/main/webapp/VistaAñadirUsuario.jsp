@@ -44,6 +44,13 @@ a{
 <label>Date: <input type="date" id="fecha_login" name="fecha_login" /></label>
 <br>
 <br>
+<select name="rol">
+	<c:forEach items="${roles}" var="rol">
+	<option value="${rol.nombre}">${rol.nombre} </option>
+	</c:forEach>	
+</select>
+<br>
+<br>
 <input type="submit" value="GUARDAR" />
 </form>
 
