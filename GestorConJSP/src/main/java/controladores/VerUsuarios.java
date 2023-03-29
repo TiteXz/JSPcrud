@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Modelo.ModeloRol;
 import Modelo.ModeloUsuario;
+import Modelo.Roles;
 import Modelo.Usuario;
 
 /**
@@ -34,11 +36,17 @@ public class VerUsuarios extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		ModeloUsuario moUsu = new ModeloUsuario();
+		ModeloRol mR = new ModeloRol();
+		
+		mR.conectar();
+		ArrayList<Roles> roles = mR.getRoles();
+		mR.cerrar();
 		
 		moUsu.conectar();
 		ArrayList<Usuario> usuarios = moUsu.getUsuarios();
 		moUsu.cerrar();
 		
+		request.setAttribute("roles", roles);
 		request.setAttribute("usuarios", usuarios);
 		request.getRequestDispatcher("VistaUsuarios.jsp").forward(request, response);
 	

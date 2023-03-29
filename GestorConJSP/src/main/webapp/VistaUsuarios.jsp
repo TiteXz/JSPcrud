@@ -88,7 +88,9 @@ border-radius:15px;
       <td>${usuario.nombre}</td>
       <td>${usuario.password}</td>
       <td>${usuario.fecha_login}</td>
-      <td>${usuario.id_rol}</td>
+       <c:forEach items="${roles}" var="rol">
+      <td>${rol.nombre}</td>
+      </c:forEach>
       <td><a class= "eliminar" href="EliminarUsuario?id=${usuario.id}">eliminar </a> </td>
       <td><a class= "modificar" href="FormModificarUsuario?id=${usuario.id}">Modificar </a> </td>
       <td><a class= "Ver" href="VerUsuario?id=${usuario.id}">VerUsuario </a> </td>
