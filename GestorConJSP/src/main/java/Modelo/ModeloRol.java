@@ -32,6 +32,9 @@ public class ModeloRol extends Conexion{
 		
 	}
 	
+	
+	
+	
 	public Roles getRol(String nombre) {
 		Roles rol = new Roles();
 		try {
@@ -51,5 +54,32 @@ public class ModeloRol extends Conexion{
 		
 		return rol;
 	}
+	
+	public ArrayList<Roles> getNombre(int id_rol) {
+		ArrayList<Roles> roles = new ArrayList<Roles>();
+		try {
+			PreparedStatement pst = conexion.prepareStatement("SELECT * FROM roles where id=?");
+			pst.setInt(1, id_rol);
+
+			ResultSet resultado = pst.executeQuery();
+			
+			while(resultado.next()) {
+				Roles rol = new Roles();
+			
+			rol.setNombre(resultado.getString("nombre"));
+			rol.setId(resultado.getInt("id"));
+			
+			roles.add(rol);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return roles;
+	}
+	
+	
+	
 	
 }

@@ -10,6 +10,7 @@ public class Usuario {
 	private String password;
 	private Date fecha_login;
 	private int id_rol;
+	private Roles rol;
 	
 	public Usuario() {}
 	

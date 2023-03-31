@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Modelo.Conexion;
+import Modelo.ModeloRol;
 import Modelo.ModeloUsuario;
 import Modelo.Usuario;
 
@@ -43,10 +44,13 @@ public class ModificarUsuario extends HttpServlet {
 		String password = request.getParameter("password");
 		SimpleDateFormat fecha_login = new SimpleDateFormat("yyyy-MM-dd");
 		int id_rol = Integer.parseInt(request.getParameter("id_rol"));
+		String nom_rol = request.getParameter("rol");
 		
 		ModeloUsuario mU = new ModeloUsuario();
+		ModeloRol  mR = new ModeloRol();
 		
 		Usuario usu = new Usuario();
+		usu.setId(id);
 		usu.setNombre(nombre);
 		usu.setPassword(password);
 		try {
@@ -55,8 +59,9 @@ public class ModificarUsuario extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		usu.setId(id);
-		usu.setId_rol(id_rol);
+		mR.conectar();
+		usu.setId_rol(mR.getRol(nom_rol).getId());
+		mR.cerrar();
 		
 		//update
 		mU.conectar();

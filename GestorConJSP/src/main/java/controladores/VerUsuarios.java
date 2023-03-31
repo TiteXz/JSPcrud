@@ -37,14 +37,16 @@ public class VerUsuarios extends HttpServlet {
 		
 		ModeloUsuario moUsu = new ModeloUsuario();
 		ModeloRol mR = new ModeloRol();
-		
-		mR.conectar();
-		ArrayList<Roles> roles = mR.getRoles();
-		mR.cerrar();
-		
+		String nombre = request.getParameter("nombre_rol");
+		int id_rol = Integer.parseInt(request.getParameter("id_rol"));
+	
 		moUsu.conectar();
 		ArrayList<Usuario> usuarios = moUsu.getUsuarios();
 		moUsu.cerrar();
+		
+		mR.conectar();
+		ArrayList<Roles>roles = mR.getNombre(id_rol);
+		mR.cerrar();
 		
 		request.setAttribute("roles", roles);
 		request.setAttribute("usuarios", usuarios);
